@@ -63,7 +63,13 @@ const getFinites = () => {
   return finites
 }
 
-const getRegionSize = () => {
+// PARTS
+
+const one = () => {
+  return Math.max(...getFinites().values())
+}
+
+const two = () => {
   let size = 0
   for (let x = min.x; x <= max.x; x++) {
     for (let y = min.y; y <= max.y; y++) {
@@ -73,16 +79,6 @@ const getRegionSize = () => {
     }
   }
   return size
-}
-
-// PARTS
-
-const one = () => {
-  return Math.max(...getFinites().values())
-}
-
-const two = () => {
-  return getRegionSize()
 }
 
 // LOG
