@@ -2,14 +2,14 @@
 
 const fs = require('fs')
 const path = require('path')
-const puzzle = fs.readFileSync(path.join(__dirname, '.') + '/input.txt').toString().split('\n');
+const puzzle = fs.readFileSync(path.join(__dirname, '.') + '/input.txt').toString().split('\n')
 
 // METHODS
 
 const findLength = (arr, length) => arr.filter(id => {
   for (let i = 0; i < id.length; i++) {
     if((id.match(new RegExp(id[i], 'g')) || []).length === length) {
-      return true;
+      return true
     }
   }
 }).length

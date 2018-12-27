@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 const path = require('path')
-const puzzle = fs.readFileSync(path.join(__dirname, '.') + '/input.txt').toString();
+const puzzle = fs.readFileSync(path.join(__dirname, '.') + '/input.txt').toString()
 
 // METHODS
 
