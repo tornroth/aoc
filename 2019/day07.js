@@ -29,17 +29,34 @@ const permutator = (inputArr) => {
 
 const getParams = (integers, pos) => {
     const code = ('' + integers[pos]).padStart(5, '0')
-    const params = [Number(code.slice(-2))]
+    const op = Number(code.slice(-2))
+    const params = [op]
 
-    if (params[0] >= 99) return params
+    const getValue = (mode, relPos) => {
+        mode = Number(mode)
+        const write = op === 3 || relPos === 3
+        const modes = {
+            0: integers[pos + relPos],
+            1: pos + relPos
+        }
+        const pointer = modes[mode]
 
-    params.push(integers[params[0] === 3 || Number(code[2]) ? pos + 1 : integers[pos + 1]])
-    if (params[0] >= 3 && params[0] <= 4) return params
+        return write ? pointer : integers[pointer]
+    }
 
-    params.push(integers[Number(code[1]) ? pos + 2 : integers[pos + 2]])
-    if (params[0] >= 5 && params[0] <= 6) return params
+    // return without parameters
+    if (op >= 99) return params
 
-    params.push(integers[pos + 3])
+    // return with one parameter
+    params.push(getValue(code[2], 1))
+    if ([3, 4, 9].includes(op)) return params
+
+    // return with two parameters
+    params.push(getValue(code[1], 2))
+    if ([5, 6].includes(op)) return params
+
+    // return with three parameters
+    params.push(getValue(code[0], 3))
     return params
 }
 
